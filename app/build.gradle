@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.apollographql.apollo'
 }
 
 android {
@@ -59,6 +60,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
 
     //Coroutines
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
@@ -80,5 +82,9 @@ dependencies {
     implementation "androidx.room:room-runtime:2.2.6"
     kapt "androidx.room:room-compiler:2.2.6"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //Apollo
+    implementation("com.apollographql.apollo:apollo-runtime:2.2.0")
+    implementation "com.apollographql.apollo:apollo-android-support:2.2.0"
 
 }
