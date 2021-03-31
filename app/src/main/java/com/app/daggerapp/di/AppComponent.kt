@@ -1,6 +1,7 @@
 package com.app.daggerapp.di
 
 import android.app.Application
+import com.app.daggerapp.di.module.GraphModule
 import com.app.daggerapp.di.module.NetworkModule
 import com.app.daggerapp.ui.login.LoginFragment
 import com.app.daggerapp.ui.login.MainActivity
@@ -17,6 +18,7 @@ import javax.inject.Singleton
         RepositoryModule::class,
         ViewModelModule::class,
         NetworkModule::class,
+        GraphModule::class,
         RoomModule::class
     ]
 )
