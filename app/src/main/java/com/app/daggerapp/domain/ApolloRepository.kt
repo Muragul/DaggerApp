@@ -1,5 +1,7 @@
 package com.app.daggerapp.domain
 
+
 interface ApolloRepository {
-    fun getLaunchList()
+//    suspend fun getLaunchList(): List<LaunchListQuery.Launch>
+    suspend fun getLaunchList()
 }

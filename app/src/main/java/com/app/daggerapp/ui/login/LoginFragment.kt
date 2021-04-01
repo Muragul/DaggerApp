@@ -11,17 +11,12 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.app.daggerapp.App
 import com.app.daggerapp.R
-import com.app.daggerapp.ui.list.ApolloViewModel
 import com.app.daggerapp.ui.list.ListActivity
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val apolloViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(ApolloViewModel::class.java)
-    }
 
     private val loginViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
@@ -46,7 +41,6 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        apolloViewModel.getLaunchList()
 
         Toast.makeText(
             requireContext(),

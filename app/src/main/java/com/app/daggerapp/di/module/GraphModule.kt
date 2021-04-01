@@ -7,6 +7,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -18,33 +19,32 @@ class GraphModule {
 
     @Provides
     @Singleton
-    fun provideApolloClient(okHttpClient: OkHttpClient): ApolloClient =
+    fun provideApolloClient(@Named("graphql_client") okHttpClient: OkHttpClient): ApolloClient =
         ApolloClient.builder()
             .serverUrl(BASE_URL)
             .okHttpClient(okHttpClient)
             .build()
 
-    /*
-
     @Provides
     @Singleton
+    @Named("graphql_interceptor")
     fun provideInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor()
             .setLevel(
                 if (BuildConfig.DEBUG)
                     HttpLoggingInterceptor.Level.BODY
                 else
-                    HttpLoggingInterceptor.Level.NONE)
+                    HttpLoggingInterceptor.Level.NONE
+            )
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    @Named("graphql_client")
+    fun provideOkHttpClient(@Named("graphql_interceptor") httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .writeTimeout(10, TimeUnit.SECONDS)
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .build()
-
-     */
 }

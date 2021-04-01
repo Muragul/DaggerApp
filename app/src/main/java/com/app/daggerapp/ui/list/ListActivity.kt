@@ -3,6 +3,7 @@ package com.app.daggerapp.ui.list
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import com.app.daggerapp.App
 import com.app.daggerapp.R
@@ -24,6 +25,10 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         (application as App).appComponent.inject(this)
         setContentView(R.layout.activity_list)
+
+        findViewById<Button>(R.id.back).setOnClickListener {
+            onBackPressed()
+        }
 
         CoroutineScope(Dispatchers.IO).launch {
             Log.e("RESULT", listViewModel.loadData().toString())
