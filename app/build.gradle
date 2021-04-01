@@ -35,6 +35,7 @@ android {
     }
     apollo{
         generateKotlinModels = true
+        rootPackageName.set("com.app.daggerapp")
     }
 }
 
@@ -90,7 +91,5 @@ dependencies {
     //Apollo
     implementation("com.apollographql.apollo:apollo-runtime:2.2.0")
     implementation "com.apollographql.apollo:apollo-android-support:2.2.0"
-
-    //Recycler View
 
 }

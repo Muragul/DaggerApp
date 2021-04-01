@@ -1,6 +1,5 @@
 package com.app.daggerapp.data.repository
 
-import LaunchListQuery
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +9,7 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.fetcher.ApolloResponseFetchers
+import com.app.daggerapp.LaunchListQuery
 import com.app.daggerapp.domain.ApolloRepository
 import javax.inject.Inject
 import kotlin.reflect.typeOf
@@ -23,7 +23,7 @@ class ApolloRepositoryImpl @Inject constructor(private val apolloClient: ApolloC
             .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
             .enqueue(object : ApolloCall.Callback<LaunchListQuery.Data>() {
                 override fun onResponse(response: Response<LaunchListQuery.Data>) {
-                    result.value = response.data
+                    result.postValue(response.data)
                     Log.e("LaunchList RESULT", response.data?.javaClass.toString())
                 }
 

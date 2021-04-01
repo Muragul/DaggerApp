@@ -16,7 +16,7 @@ class ChildAdapter(private val children: List<ChildModel>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rootView =
-            LayoutInflater.from(parent.context).inflate(R.layout.child_recycler, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.child_item, parent, false)
         return ViewHolder(rootView)
     }
 

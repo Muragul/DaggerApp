@@ -2,6 +2,7 @@ package com.app.daggerapp.ui.apollo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.app.daggerapp.LaunchListQuery
 import com.app.daggerapp.domain.ApolloUseCase
 import javax.inject.Inject
 
