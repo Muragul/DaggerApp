@@ -9,6 +9,7 @@ import com.app.daggerapp.di.module.RepositoryModule
 import com.app.daggerapp.di.module.RoomModule
 import com.app.daggerapp.ui.apollo.LaunchListActivity
 import com.app.daggerapp.ui.list.ListActivity
+import com.app.daggerapp.ui.nestedrv.NestedRVActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -32,6 +33,8 @@ interface AppComponent {
     fun inject(listActivity: ListActivity)
 
     fun inject(launchListActivity: LaunchListActivity)
+
+    fun inject(launchNestedRVActivity: NestedRVActivity)
 
 
     @Component.Builder

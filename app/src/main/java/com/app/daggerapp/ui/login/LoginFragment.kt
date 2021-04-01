@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.app.daggerapp.App
 import com.app.daggerapp.R
 import com.app.daggerapp.ui.list.ListActivity
+import com.app.daggerapp.ui.nestedrv.NestedRVActivity
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -34,6 +35,10 @@ class LoginFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_login, container, false)
         rootView.findViewById<Button>(R.id.view_list).setOnClickListener {
             val intent = Intent(activity, ListActivity::class.java)
+            startActivity(intent)
+        }
+        rootView.findViewById<Button>(R.id.to_nested_rv).setOnClickListener {
+            val intent = Intent(activity, NestedRVActivity::class.java)
             startActivity(intent)
         }
         return rootView

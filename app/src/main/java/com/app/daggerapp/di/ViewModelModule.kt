@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.app.daggerapp.ui.apollo.ApolloViewModel
 import com.app.daggerapp.ui.list.ListViewModel
 import com.app.daggerapp.ui.login.LoginViewModel
+import com.app.daggerapp.ui.nestedrv.NestedRvViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -31,4 +32,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ApolloViewModel::class)
     internal abstract fun provideApolloViewModel(viewModel: ApolloViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NestedRvViewModel::class)
+    internal abstract fun provideNestedRvViewModel(viewModel: NestedRvViewModel): ViewModel
 }
