@@ -1,7 +1,8 @@
 package com.app.daggerapp.domain
 
+import androidx.lifecycle.LiveData
+
 
 interface ApolloRepository {
-//    suspend fun getLaunchList(): List<LaunchListQuery.Launch>
-    suspend fun getLaunchList()
+    fun getLaunchList(): LiveData<LaunchListQuery.Data>
 }

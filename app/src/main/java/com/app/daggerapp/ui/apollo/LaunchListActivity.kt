@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.app.daggerapp.App
 import com.app.daggerapp.R
 import com.app.daggerapp.ui.login.MainActivity
@@ -33,12 +34,9 @@ class LaunchListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            apolloViewModel.getLaunchList()
+        apolloViewModel.getLaunchList().observe(this) {
+            val launches = it.launches.launches.filterNotNull()
+            findViewById<RecyclerView>(R.id.recycler_view).adapter = LaunchListAdapter(launches)
         }
-//        val launches = apolloViewModel.getLaunchList()?.launches()?.launches()?.filterNotNull()
-//        if (launches != null) {
-//            findViewById<RecyclerView>(R.id.recycler_view).adapter = LaunchListAdapter(launches)
-//        }
     }
 }

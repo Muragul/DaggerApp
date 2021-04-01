@@ -1,8 +1,8 @@
 package com.app.daggerapp.domain
 
+import androidx.lifecycle.LiveData
 import javax.inject.Inject
 
 class ApolloUseCase @Inject constructor(private val apolloRepository: ApolloRepository) {
-//    suspend fun getLaunchList(): List<LaunchListQuery.Launch> = apolloRepository.getLaunchList()
-    suspend fun getLaunchList() = apolloRepository.getLaunchList()
+    fun getLaunchList(): LiveData<LaunchListQuery.Data> = apolloRepository.getLaunchList()
 }
