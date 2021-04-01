@@ -7,6 +7,7 @@ import com.app.daggerapp.ui.login.LoginFragment
 import com.app.daggerapp.ui.login.MainActivity
 import com.app.daggerapp.di.module.RepositoryModule
 import com.app.daggerapp.di.module.RoomModule
+import com.app.daggerapp.ui.apollo.LaunchListActivity
 import com.app.daggerapp.ui.list.ListActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -29,6 +30,8 @@ interface AppComponent {
     fun inject(loginFragment: LoginFragment)
 
     fun inject(listActivity: ListActivity)
+
+    fun inject(launchListActivity: LaunchListActivity)
 
 
     @Component.Builder

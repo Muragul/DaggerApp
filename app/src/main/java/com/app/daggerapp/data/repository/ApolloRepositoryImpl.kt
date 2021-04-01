@@ -8,26 +8,43 @@ import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.fetcher.ApolloResponseFetchers
 import com.app.daggerapp.domain.ApolloRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ApolloRepositoryImpl @Inject constructor(private val apolloClient: ApolloClient) :
     ApolloRepository {
-    override fun getLaunchList() {
-        CoroutineScope(Dispatchers.IO).launch {
-            apolloClient.query(LaunchListQuery())
-                .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
-                .enqueue(object : ApolloCall.Callback<LaunchListQuery.Data>() {
-                    override fun onResponse(response: Response<LaunchListQuery.Data>) {
-                        Log.e("LaunchList", "Success ${response.data}")
-                    }
+    override suspend fun getLaunchList() {
+        apolloClient.query(LaunchListQuery())
+            .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
+            .enqueue(object : ApolloCall.Callback<LaunchListQuery.Data>() {
+                override fun onResponse(response: Response<LaunchListQuery.Data>) {
+                    Log.e("LaunchList RESULT", response.data.toString())
+                }
 
-                    override fun onFailure(e: ApolloException) {
-                    }
-
-                })
-        }
+                override fun onFailure(e: ApolloException) {
+                    Log.e("LaunchList", "Failure", e)
+                }
+            })
     }
+
+/*    override suspend fun getLaunchList(): List<LaunchListQuery.Launch> {
+        val result = mutableListOf<LaunchListQuery.Launch>()
+        apolloClient.query(LaunchListQuery())
+            .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
+            .enqueue(object : ApolloCall.Callback<LaunchListQuery.Data>() {
+                override fun onResponse(response: Response<LaunchListQuery.Data>) {
+                    Log.e("LaunchList RESULT", response.data.toString())
+                    response.data?.launches?.launches?.filterNotNull().let {
+                        if (it != null) {
+                            result.addAll(it)
+                        }
+                    }
+                }
+                override fun onFailure(e: ApolloException) {
+                    Log.e("LaunchList", "Failure", e)
+                }
+            })
+        return result
+    }
+
+ */
 }

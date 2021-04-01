@@ -2,7 +2,7 @@ package com.app.daggerapp.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.app.daggerapp.ui.list.ApolloViewModel
+import com.app.daggerapp.ui.apollo.ApolloViewModel
 import com.app.daggerapp.ui.list.ListViewModel
 import com.app.daggerapp.ui.login.LoginViewModel
 import dagger.Binds
