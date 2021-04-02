@@ -7,9 +7,6 @@ import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import com.app.daggerapp.App
 import com.app.daggerapp.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ListActivity : AppCompatActivity() {
@@ -30,8 +27,8 @@ class ListActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            Log.e("RESULT", listViewModel.loadData().toString())
+        val data = listViewModel.loadDataRx().subscribe {
+            Log.e("RxResult: ", it.categories.toString())
         }
     }
 

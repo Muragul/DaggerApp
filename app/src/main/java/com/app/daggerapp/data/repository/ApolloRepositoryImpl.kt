@@ -1,36 +1,34 @@
 package com.app.daggerapp.data.repository
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.exception.ApolloException
-import com.apollographql.apollo.fetcher.ApolloResponseFetchers
+import com.apollographql.apollo.rx2.Rx2Apollo
 import com.app.daggerapp.LaunchListQuery
 import com.app.daggerapp.domain.ApolloRepository
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import kotlin.reflect.typeOf
 
 class ApolloRepositoryImpl @Inject constructor(private val apolloClient: ApolloClient) :
     ApolloRepository {
 
-    var result = MutableLiveData<LaunchListQuery.Data>()
-    override fun getLaunchList(): LiveData<LaunchListQuery.Data> {
-        apolloClient.query(LaunchListQuery())
-            .responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
-            .enqueue(object : ApolloCall.Callback<LaunchListQuery.Data>() {
-                override fun onResponse(response: Response<LaunchListQuery.Data>) {
-                    result.postValue(response.data)
-                    Log.e("LaunchList RESULT", response.data?.javaClass.toString())
-                }
+    override fun getListRxSingle(): Single<LaunchListQuery.Data> {
+        val call = apolloClient.query(LaunchListQuery())
+        return Rx2Apollo.from(call)
+            .filter { it.data != null }
+            .map { it.data!! }
+            .singleOrError()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 
-                override fun onFailure(e: ApolloException) {
-                    Log.e("LaunchList", "Failure", e)
-                }
-            })
-        return result
+    override fun getListRx(): Observable<LaunchListQuery.Data> {
+        val call = apolloClient.query(LaunchListQuery())
+        return Rx2Apollo.from(call)
+            .filter { it.data != null }
+            .map { it.data!! }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }

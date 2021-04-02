@@ -1,7 +1,8 @@
 package com.app.daggerapp.domain
 
-import com.app.daggerapp.data.model.Category
+import com.app.daggerapp.data.model.CategoryResponse
+import io.reactivex.Observable
 
 interface ListRepository {
-    suspend fun loadData(): List<Category>
+    fun loadDataRx(): Observable<CategoryResponse>
 }
