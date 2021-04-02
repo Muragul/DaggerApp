@@ -1,18 +1,15 @@
 package com.app.daggerapp.ui.apollo
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.app.daggerapp.App
 import com.app.daggerapp.R
 import com.app.daggerapp.ui.login.MainActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LaunchListActivity : AppCompatActivity() {
@@ -34,7 +31,7 @@ class LaunchListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        apolloViewModel.getLaunchList().observe(this) {
+        val apollo = apolloViewModel.getListRxSingle().subscribe { it ->
             val launches = it.launches.launches.filterNotNull()
             findViewById<RecyclerView>(R.id.recycler_view).adapter = LaunchListAdapter(launches)
         }

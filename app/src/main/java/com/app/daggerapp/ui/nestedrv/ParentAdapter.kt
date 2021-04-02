@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.daggerapp.R
 import com.app.daggerapp.data.model.ParentModel
-import kotlinx.android.synthetic.main.parent_recycler.view.*
+import kotlinx.android.synthetic.main.parent_item.view.*
 
 class ParentAdapter(private val parents: List<ParentModel>) :
     RecyclerView.Adapter<ParentAdapter.ViewHolder>() {

@@ -1,9 +1,10 @@
 package com.app.daggerapp.domain
 
-import androidx.lifecycle.LiveData
 import com.app.daggerapp.LaunchListQuery
-
+import io.reactivex.Observable
+import io.reactivex.Single
 
 interface ApolloRepository {
-    fun getLaunchList(): LiveData<LaunchListQuery.Data>
+    fun getListRx(): Observable<LaunchListQuery.Data>
+    fun getListRxSingle(): Single<LaunchListQuery.Data>
 }

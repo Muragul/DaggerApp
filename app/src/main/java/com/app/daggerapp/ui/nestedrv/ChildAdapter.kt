@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.daggerapp.R
 import com.app.daggerapp.data.model.ChildModel
-import kotlinx.android.synthetic.main.child_recycler.view.*
+import kotlinx.android.synthetic.main.child_item.view.*
 
 class ChildAdapter(private val children: List<ChildModel>) :
     RecyclerView.Adapter<ChildAdapter.ViewHolder>() {
