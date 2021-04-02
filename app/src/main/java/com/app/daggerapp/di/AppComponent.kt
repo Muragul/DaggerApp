@@ -7,6 +7,7 @@ import com.app.daggerapp.ui.login.LoginFragment
 import com.app.daggerapp.ui.login.MainActivity
 import com.app.daggerapp.di.module.RepositoryModule
 import com.app.daggerapp.di.module.RoomModule
+import com.app.daggerapp.ui.MapsActivity
 import com.app.daggerapp.ui.apollo.LaunchListActivity
 import com.app.daggerapp.ui.list.ListActivity
 import com.app.daggerapp.ui.nestedrv.NestedRVActivity
@@ -34,7 +35,9 @@ interface AppComponent {
 
     fun inject(launchListActivity: LaunchListActivity)
 
-    fun inject(launchNestedRVActivity: NestedRVActivity)
+    fun inject(nestedRVActivity: NestedRVActivity)
+
+    fun inject(mapsActivity: MapsActivity)
 
 
     @Component.Builder

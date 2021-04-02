@@ -1,5 +1,6 @@
 package com.app.daggerapp.ui.list
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import com.app.daggerapp.App
 import com.app.daggerapp.R
+import com.app.daggerapp.ui.MapsActivity
 import javax.inject.Inject
 
 class ListActivity : AppCompatActivity() {
@@ -25,6 +27,11 @@ class ListActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.back).setOnClickListener {
             onBackPressed()
+        }
+
+        findViewById<Button>(R.id.view_map).setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
         }
 
         val data = listViewModel.loadDataRx().subscribe {
