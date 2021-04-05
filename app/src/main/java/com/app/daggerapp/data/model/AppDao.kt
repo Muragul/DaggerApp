@@ -4,15 +4,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.Single
 
 @Dao
 interface AppDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addUser(user: User)
-
     @Query("SELECT * FROM users_table")
-    fun getAllUsers(): List<User>
+    fun getAllUsersRx(): Observable<List<User>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addUserRx(user: User): Completable
 
     @Query("SELECT COUNT(*) FROM users_table")
-    fun getUsersCount(): Int
+    fun getUsersCountRX(): Single<Int>
 }
