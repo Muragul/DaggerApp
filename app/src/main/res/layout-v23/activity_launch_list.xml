@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.apollo.LaunchListActivity">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/shimmer_layout_main"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
     <Button
         android:id="@+id/to_main_activity"
         android:layout_width="wrap_content"
