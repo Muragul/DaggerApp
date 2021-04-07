@@ -16,7 +16,7 @@ object ParentDataFactory {
     }
 
     private fun randomChildren() : List<ChildModel>{
-        return ChildDataFactory.getChildren(20)
+        return ChildDataFactory.getChildren(5)
     }
 
     fun getParents(count : Int) : List<ParentModel>{

@@ -7,7 +7,7 @@
     tools:context=".ui.nestedrv.NestedRVActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_parent"
+        android:id="@+id/rvSection"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         android:layout_width="match_parent"

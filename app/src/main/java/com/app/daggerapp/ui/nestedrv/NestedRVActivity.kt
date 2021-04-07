@@ -2,25 +2,25 @@ package com.app.daggerapp.ui.nestedrv
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
+import android.view.View
 import com.app.daggerapp.App
 import com.app.daggerapp.R
 import com.app.daggerapp.data.repository.ParentDataFactory
-import kotlinx.android.synthetic.main.activity_nested_r_v.*
+import kotlinx.android.synthetic.main.parent_recycler.*
 
 class NestedRVActivity : AppCompatActivity() {
-    lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_nested_r_v)
+        setContentView(R.layout.parent_recycler)
         (application as App).appComponent.inject(this)
-
-        initRecycler()
+        shimmerLayout.startShimmer()
+        initRv()
     }
 
-    private fun initRecycler() {
-        recyclerView = rv_parent
-        recyclerView.adapter = ParentAdapter(ParentDataFactory.getParents(40))
+    private fun initRv() {
+        rvSection.adapter = ParentAdapter(ParentDataFactory.getParents(7))
+        shimmerLayout.stopShimmer()
+        shimmerLayout.visibility = View.GONE
     }
 }
