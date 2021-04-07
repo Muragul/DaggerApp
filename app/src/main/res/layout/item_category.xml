@@ -19,9 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/manrope_medium"
-        android:text="Все партнеры"
         android:gravity="center"
+        android:text="Все партнеры"
         android:textColor="@color/darkIndigo"
         android:textSize="12sp" />
-
 </LinearLayout>

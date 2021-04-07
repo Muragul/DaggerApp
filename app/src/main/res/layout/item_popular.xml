@@ -39,7 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:fontFamily="@font/manrope_extrabold"
+            android:fontFamily="@font/manrope_ExtraBold"
             android:text="Dodo Pizza"
             android:textColor="@color/darkIndigo"
             android:textSize="18sp"
